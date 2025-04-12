@@ -1,13 +1,15 @@
 using UnityEngine;
 
-namespace AIEnemy.Player
+namespace AIEnemy
 {
     public class PlayerView : MonoBehaviour
     {
         private PlayerData data;
+        
         public void Refresh(PlayerData data)
         {
             this.data = data;
+            UpdatePosition(data);
             
         }
 

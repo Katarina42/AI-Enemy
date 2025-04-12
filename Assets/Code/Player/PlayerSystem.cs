@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace AIEnemy.Player
+namespace AIEnemy
 {
     public class PlayerSystem : MonoInstaller
     {
@@ -16,7 +16,7 @@ namespace AIEnemy.Player
                 .AsSingle()
                 .NonLazy();
 
-            Container.Bind<PlayerController>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerController>().AsSingle();
         }
     }
 }
