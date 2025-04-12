@@ -1,29 +1,21 @@
 using UnityEngine;
-using System;
 
 namespace AIEnemy
 {
     [RequireComponent(typeof(Collider2D))]
     public class GridTile : MonoBehaviour
     {
-        public event Action<GridTile> OnTileSelected = delegate { };
-
         [SerializeField] private SpriteRenderer sprite;
+        
+        private GridTileData data;
 
-        private int x;
-        private int y;
-
-        public void SetCoordinates(int x, int y)
+        public void Initialize(GridTileData data)
         {
-            this.x = x;
-            this.y = y;
+            this.data = data;
+            transform.position = new Vector3(data.X * data.Size, data.Y * data.Size, 0);
+            SetHighlight(data.ShouldHighlight);
         }
-
-        public Vector2Int GetGridPosition()
-        {
-            return new Vector2Int(x, y);
-        }
-
+        
         private void OnMouseEnter()
         {
             SetHighlight(true);
@@ -36,7 +28,7 @@ namespace AIEnemy
 
         private void OnMouseDown()
         {
-            OnTileSelected?.Invoke(this);
+            //GameEvents.GridTileSelected.Invoke(data);
         }
 
         private void SetHighlight(bool active)
