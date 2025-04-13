@@ -4,7 +4,6 @@ namespace AIEnemy
     {
         public int X { get; set; }
         public int Y { get; set;}
-        public bool ShouldHighlight { get; set; }
-        public float Size { get; set; }
+        public int Size { get; set; } = 8;
     }
 }

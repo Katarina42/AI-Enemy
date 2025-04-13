@@ -15,9 +15,11 @@ namespace AIEnemy
                 .AsSingle()
                 .WithArguments(gridTilePrefab, gridSize * gridSize);
 
+            Container.Bind<GridView>().AsCached();
+            
             Container.BindInterfacesAndSelfTo<GridController>()
                 .AsSingle()
-                .WithArguments(gridSize, gridSize)
+                .WithArguments(gridSize)
                 .NonLazy();
         }
     }

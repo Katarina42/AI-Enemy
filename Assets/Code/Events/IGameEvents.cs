@@ -4,6 +4,6 @@ namespace AIEnemy
 {
     public interface IGameEvents
     {
-        public event Action<GridTileData> GridTileSelected;
+        public event Action<int, int> GridTileSelected;
     }
 }

@@ -4,11 +4,11 @@ namespace AIEnemy
 {
     public class GameEvents : IGameEvents, IGameEventsInvoker
     {
-        public event Action<GridTileData> GridTileSelected = delegate { };
+        public event Action<int, int> GridTileSelected = delegate { };
 
-        public void InvokeGridTileSelected(GridTileData tileData)
+        public void InvokeGridTileSelected(int x, int y)
         {
-            GridTileSelected(tileData);
+            GridTileSelected(x, y);
         }
     }
 }

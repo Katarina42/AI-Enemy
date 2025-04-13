@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 204a235de7b384940a5458de55ba2676
+guid: 653c98925cfd744bba26864156b0a67d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8180171696930044909
-    second: Warrior_0
+      213: 816932161069917525
+    second: ChatGPT Image Apr 13, 2025, 09_09_11 PM_0
+  - first:
+      213: 1629574281773475226
+    second: ChatGPT Image Apr 13, 2025, 09_09_11 PM_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Warrior_0
+      name: ChatGPT Image Apr 13, 2025, 09_09_11 PM_0
       rect:
         serializedVersion: 2
-        x: 198
-        y: 76
-        width: 793
-        height: 955
+        x: 17
+        y: 24
+        width: 959
+        height: 907
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +131,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 314c7ca9e213a7e80800000000000000
-      internalID: -8180171696930044909
+      spriteID: 5552a22e873565b00800000000000000
+      internalID: 816932161069917525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChatGPT Image Apr 13, 2025, 09_09_11 PM_1
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 45
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a956838ec296d9610800000000000000
+      internalID: 1629574281773475226
       vertices: []
       indices: 
       edges: []
@@ -148,7 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Warrior_0: -8180171696930044909
+      ChatGPT Image Apr 13, 2025, 09_09_11 PM_0: 816932161069917525
+      ChatGPT Image Apr 13, 2025, 09_09_11 PM_1: 1629574281773475226
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

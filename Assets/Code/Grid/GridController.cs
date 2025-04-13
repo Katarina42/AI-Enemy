@@ -4,42 +4,35 @@ namespace AIEnemy
 {
     public class GridController : IInitializable
     {
-        private readonly IObjectPool<GridTile> gridTilePool;
-        private readonly int width;
-        private readonly int height;
+        private readonly IGameEventsInvoker gameEventsInvoker;
+        private readonly GridView view;
+        
+        private readonly int size;
+        
 
-        private GridTile[,] gridTiles;
-
-        public GridController(IObjectPool<GridTile> gridTilePool, int width, int height)
+        public GridController(IGameEventsInvoker gameEventsInvoker,
+            GridView view,
+            int size)
         {
-            this.gridTilePool = gridTilePool;
-            this.width = width;
-            this.height = height;
+            this.gameEventsInvoker = gameEventsInvoker;
+            this.view = view;
+            this.size = size;
         }
 
         public void Initialize()
         {
-            gridTiles = new GridTile[width, height];
-
-            for (var gridX = 0; gridX < width; gridX++)
-            {
-                for (var gridY = 0; gridY < height; gridY++)
+            view.TileSelected += OnTileSelected;
+            view.Refresh(
+                new GridData()
                 {
-                    var tile = gridTilePool.Get();
-                    var tileData = new GridTileData()
-                    {
-                        ShouldHighlight = false,
-                        Size = tile.transform.localScale.x,
-                        X = gridX,
-                        Y = gridY
-                    };
-
-                    tile.Initialize(tileData);
-
-                    gridTiles[gridX, gridY] = tile;
-                }
-            }
-
+                    Width = size,
+                    Height = size
+                });
+        }
+        
+        private void OnTileSelected(GridTileData tile)
+        {
+            gameEventsInvoker.InvokeGridTileSelected(tile.X, tile.Y);
         }
     }
 }
