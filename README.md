@@ -34,15 +34,6 @@ Although **A\*** is the industry standard for tactical pathfinding, this prototy
 
 ---
 
-## 📹 Preview
-
-https://user-images.githubusercontent.com/.../Screen%20Recording%202025-04-14%20at%2012.10.47.mov
-
-*Above: Enemy moves toward player using range-limited BFS, with smooth LERP movement.*
-
-> Let me know if you'd like me to host the video or embed it via YouTube or GitHub-compatible format.
-
----
 
 ## 🧠 Future Plan: Adaptive AI
 
@@ -63,12 +54,12 @@ This will evolve into a modular `IEnemyAI` system where each difficulty level (n
 
 ## 💡 Technologies & Design Principles
 
-- **Unity** 2022+
+- **Unity** 6
 - **Zenject** for dependency injection
 - **MVC + SOLID**
 - **ScriptableObjects** for data (planned)
 - **Object Pooling** for grid and unit visuals
-- **Unit-testable** service layers
+- **Unit-tests** service layers (in progress)
 
 ---
 
