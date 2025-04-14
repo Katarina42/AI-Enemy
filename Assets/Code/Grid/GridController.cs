@@ -6,28 +6,23 @@ namespace AIEnemy
     {
         private readonly IGameEventsInvoker gameEventsInvoker;
         private readonly GridView view;
-        
-        private readonly int size;
+        private readonly IGridDataProvider gridDataProvider;
         
 
         public GridController(IGameEventsInvoker gameEventsInvoker,
             GridView view,
-            int size)
+            IGridDataProvider gridDataProvider)
         {
             this.gameEventsInvoker = gameEventsInvoker;
             this.view = view;
-            this.size = size;
+            this.gridDataProvider = gridDataProvider;
         }
 
         public void Initialize()
         {
             view.TileSelected += OnTileSelected;
-            view.Refresh(
-                new GridData()
-                {
-                    Width = size,
-                    Height = size
-                });
+            var data = gridDataProvider.Get();
+            view.Refresh(data);
         }
         
         private void OnTileSelected(GridTileData tile)
