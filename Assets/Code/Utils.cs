@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace AIEnemy
 {
-    public static class GridUtils
+    public static class Utils
     {
-        public const int GRID_SIZE = 8;
+        private const int GRID_SIZE = 8;
         
         public static Vector3 ToWorld(Vector2Int gridPosition)
         {

@@ -14,7 +14,7 @@ namespace AIEnemy
 
         protected virtual void UpdatePosition(IGridAgentData data)
         {
-            transform.position = GridUtils.ToWorld(data.GridPosition);
+            transform.position = Utils.ToWorld(data.GridPosition);
         }
     }
 }

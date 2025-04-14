@@ -48,7 +48,7 @@ namespace AIEnemy
         
         private void SetPosition(Vector2Int position)
         {
-            transform.position = GridUtils.ToWorld(position);
+            transform.position = Utils.ToWorld(position);
         }
     }
 }

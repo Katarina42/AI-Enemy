@@ -26,7 +26,7 @@ namespace AIEnemy
 
         private IEnumerator MoveToTile(Vector2Int gridPosition)
         {
-            var targetPosition = GridUtils.ToWorld(gridPosition);
+            var targetPosition = Utils.ToWorld(gridPosition);
             var startPosition = transform.position;
             var timeElapsed = 0f;
 
