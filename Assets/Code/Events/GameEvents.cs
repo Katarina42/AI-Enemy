@@ -1,14 +1,15 @@
 using System;
+using UnityEngine;
 
 namespace AIEnemy
 {
     public class GameEvents : IGameEvents, IGameEventsInvoker
     {
-        public event Action<int, int> GridTileSelected = delegate { };
+        public event Action<Vector2Int> GridTileSelected = delegate { };
 
-        public void InvokeGridTileSelected(int x, int y)
+        public void InvokeGridTileSelected(Vector2Int tile)
         {
-            GridTileSelected(x, y);
+            GridTileSelected(tile);
         }
     }
 }

@@ -27,7 +27,7 @@ namespace AIEnemy
         
         private void OnTileSelected(GridTileData tile)
         {
-            gameEventsInvoker.InvokeGridTileSelected(tile.X, tile.Y);
+            gameEventsInvoker.InvokeGridTileSelected(tile.GridPosition);
         }
     }
 }

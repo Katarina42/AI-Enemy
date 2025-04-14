@@ -1,8 +1,8 @@
 using System.Collections;
 using AIEnemy.AI;
 using AIEnemy.GridAgents;
+using Code.GridAgents.Model;
 using Code.Turns;
-using UnityEngine;
 using Zenject;
 
 namespace AIEnemy
@@ -12,26 +12,36 @@ namespace AIEnemy
         private readonly IEnemyAI ai;
         private readonly ITurnOrderRegistar turnOrderRegistar;
         private readonly EnemyView view;
+        private readonly IEnemyDataProvider dataProvider;
 
-        public EnemyController(IEnemyAI ai, ITurnOrderRegistar turnOrderRegistar, EnemyView view)
+        public EnemyController(IEnemyAI ai,
+            ITurnOrderRegistar turnOrderRegistar,
+            EnemyView view,
+            IEnemyDataProvider dataProvider)
         {
             this.ai = ai;
             this.turnOrderRegistar = turnOrderRegistar;
             this.view = view;
+            this.dataProvider = dataProvider;
         }
 
         public void Initialize()
         {
             turnOrderRegistar.Register(this);
-            view.Refresh(new EnemyData());
-            
+            RefreshView();
         }
 
         public IEnumerator TakeTurn()
         {
-            Debug.Log("Act");
             ai.Act();
+            RefreshView();
             yield break;
+        }
+
+        private void RefreshView()
+        {
+            var data = dataProvider.Get();
+            view.Refresh(data);
         }
     }
 }

@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace AIEnemy
 {
     public class MockGridDataProvider : IGridDataProvider
@@ -6,8 +8,7 @@ namespace AIEnemy
         {
             return new GridData()
             {
-                Height = 20,
-                Width = 16
+                Size = new Vector2Int(20, 18)
             };
         }
     }

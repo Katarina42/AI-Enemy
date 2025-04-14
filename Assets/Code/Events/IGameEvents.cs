@@ -1,9 +1,10 @@
 using System;
+using UnityEngine;
 
 namespace AIEnemy
 {
     public interface IGameEvents
     {
-        public event Action<int, int> GridTileSelected;
+        public event Action<Vector2Int> GridTileSelected;
     }
 }

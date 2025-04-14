@@ -1,7 +1,9 @@
+using UnityEngine;
+
 namespace AIEnemy
 {
     public interface IGameEventsInvoker
     {
-        public void InvokeGridTileSelected(int x, int y);
+        public void InvokeGridTileSelected(Vector2Int tile);
     }
 }

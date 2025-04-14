@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace AIEnemy
 {
@@ -20,11 +21,11 @@ namespace AIEnemy
 
         private void SetupGrid(GridData data)
         {
-            gridTiles = new GridTile[data.Width, data.Height];
+            gridTiles = new GridTile[data.Size.x, data.Size.y];
 
-            for (var gridX = 0; gridX < data.Width; gridX++)
+            for (var gridX = 0; gridX < data.Size.x; gridX++)
             {
-                for (var gridY = 0; gridY < data.Height; gridY++)
+                for (var gridY = 0; gridY < data.Size.y; gridY++)
                 {
                     SetupTile(gridX, gridY);
                 }
@@ -39,8 +40,7 @@ namespace AIEnemy
             
             tile.Refresh( new GridTileData()
             {
-                X = gridX,
-                Y = gridY
+                GridPosition = new Vector2Int(gridX, gridY)
             });
 
             gridTiles[gridX, gridY] = tile;

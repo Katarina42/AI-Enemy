@@ -18,7 +18,7 @@ namespace AIEnemy
             this.data = data;
             
             SetHighlight(false);
-            SetPosition(data.X, data.Y, data.Size);
+            SetPosition(data.GridPosition);
         }
         
         private void OnMouseEnter()
@@ -46,9 +46,9 @@ namespace AIEnemy
            highlightSprite.enabled = active;
         }
         
-        private void SetPosition(int x, int y, int size)
+        private void SetPosition(Vector2Int position)
         {
-            transform.position = new Vector3(x * size, y * size, 0);
+            transform.position = GridUtils.ToWorld(position);
         }
     }
 }

@@ -5,6 +5,6 @@ namespace AIEnemy.AI
 {
     public interface IPathfinder
     {
-        List<Vector2Int> FindPath(Vector2Int enemyPos, Vector2Int playerPos);
+        List<Vector2Int> FindPath(Vector2Int enemyPos, Vector2Int playerPos, int movementRange);
     }
 }

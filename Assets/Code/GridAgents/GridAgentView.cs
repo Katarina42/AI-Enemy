@@ -4,17 +4,17 @@ namespace AIEnemy.GridAgents
 {
     public class GridAgentView: MonoBehaviour
     {
-        private IGridAgentData data;
+        protected IGridAgentData data;
         
-        public void Refresh(IGridAgentData data)
+        public virtual void Refresh(IGridAgentData data)
         {
             this.data = data;
             UpdatePosition(data);
         }
 
-        private void UpdatePosition(IGridAgentData data)
+        protected virtual void UpdatePosition(IGridAgentData data)
         {
-            transform.position = new Vector3(data.X * 8, data.Y * 8, 0);
+            transform.position = GridUtils.ToWorld(data.GridPosition);
         }
     }
 }

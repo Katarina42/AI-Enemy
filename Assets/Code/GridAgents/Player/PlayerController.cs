@@ -1,6 +1,8 @@
 using System.Collections;
 using AIEnemy.GridAgents;
+using Code.GridAgents.Model;
 using Code.Turns;
+using UnityEngine;
 using Zenject;
 
 namespace AIEnemy
@@ -10,31 +12,38 @@ namespace AIEnemy
         private readonly PlayerView view;
         private readonly IGameEvents events;
         private readonly ITurnOrderRegistar turnOrderRegistar;
-        
+        private readonly IPlayerDataProvider dataProvider;
+
         private bool hasGridTileSelected;
-        
-        public PlayerController(PlayerView view, IGameEvents events, ITurnOrderRegistar turnOrderRegistar)
+
+        public PlayerController(PlayerView view, IGameEvents events, ITurnOrderRegistar turnOrderRegistar,
+            IPlayerDataProvider dataProvider)
         {
             this.view = view;
             this.events = events;
             this.turnOrderRegistar = turnOrderRegistar;
+            this.dataProvider = dataProvider;
         }
-        
+
         public void Initialize()
         {
             turnOrderRegistar.Register(this);
-            view.Refresh(new PlayerData());
+            RefreshView();
         }
 
-        private void OnGridTileSelected(int x, int y)
+        private void OnGridTileSelected(Vector2Int tilePosition)
         {
-           view.Refresh(new PlayerData()
-           {
-               X = x,
-               Y = y
-           });
-           
-           hasGridTileSelected = true;
+            var data = dataProvider.Get();
+            data.GridPosition = tilePosition;
+            
+            RefreshView();
+            hasGridTileSelected = true;
+        }
+
+        private void RefreshView()
+        {
+            var data = dataProvider.Get();
+            view.Refresh(data);
         }
 
         public IEnumerator TakeTurn()
@@ -45,7 +54,7 @@ namespace AIEnemy
             {
                 yield return null;
             }
-            
+
             events.GridTileSelected -= OnGridTileSelected;
         }
     }
