@@ -1,8 +1,6 @@
-using AIEnemy;
-using AIEnemy.GridAgents;
 using Zenject;
 
-namespace Code.Turns
+namespace AIEnemy
 {
     public class TurnSystem : MonoInstaller
     {

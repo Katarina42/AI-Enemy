@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using AIEnemy.GridAgents;
 using UnityEngine;
 
 namespace AIEnemy
@@ -12,6 +11,6 @@ namespace AIEnemy
         public int MovementRange { get; set; }
         public int AttackRange { get; set; }
         public List<Vector2Int> Path { get; set; }
-        public bool ShouldMove => Path.Count > 0 && Path[^1] != GridPosition;
+        public bool ShouldMove => Path != null && Path.Count > 0;
     }
 }

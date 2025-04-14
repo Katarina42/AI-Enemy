@@ -1,5 +1,4 @@
 using System.Collections;
-using AIEnemy.GridAgents;
 using UnityEngine;
 
 namespace AIEnemy
@@ -9,18 +8,20 @@ namespace AIEnemy
         [SerializeField] private float moveDuration = 0.5f;
         [SerializeField] private AnimationCurve moveCurve;
         
-        protected override void UpdatePosition(IGridAgentData data)
+        public IEnumerator AnimateTurn(EnemyData data)
         {
-            var enemyData = data as EnemyData;
-            if (enemyData.ShouldMove)
+            latestData = data;
+
+            if (!data.ShouldMove)
             {
-                foreach (var nextTile in enemyData.Path)
-                {
-                    StartCoroutine(MoveToTile(nextTile));
-                }
+                yield break;
             }
             
-            base.UpdatePosition(data);
+            foreach (var nextTile in data.Path)
+            {
+                yield return MoveToTile(nextTile);
+            }
+
         }
 
         private IEnumerator MoveToTile(Vector2Int gridPosition)

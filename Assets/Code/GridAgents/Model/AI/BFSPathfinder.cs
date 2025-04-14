@@ -5,7 +5,7 @@ namespace AIEnemy.AI
 {
     public class BFSPathfinder : IPathfinder
     {
-        private IGridDataProvider gridDataProvider;
+        private readonly IGridDataProvider gridDataProvider;
 
         public BFSPathfinder(IGridDataProvider gridDataProvider)
         {
@@ -38,7 +38,7 @@ namespace AIEnemy.AI
                     if (!IsInsideGrid(neighbor, gridSize)) continue;
                     if (cameFrom.ContainsKey(neighbor)) continue;
 
-                    int stepCount = distance[current] + 1;
+                    var stepCount = distance[current] + 1;
 
                     if (stepCount > movementRange) continue;
 
@@ -61,12 +61,12 @@ namespace AIEnemy.AI
 
         private Vector2Int FindClosestTo(Vector2Int target, Dictionary<Vector2Int, int> visited)
         {
-            Vector2Int closest = Vector2Int.zero;
-            float bestDist = float.MaxValue;
+            var closest = Vector2Int.zero;
+            var bestDist = float.MaxValue;
 
             foreach (var pos in visited.Keys)
             {
-                float dist = Vector2Int.Distance(pos, target);
+                var dist = Vector2Int.Distance(pos, target);
                 if (dist < bestDist)
                 {
                     bestDist = dist;

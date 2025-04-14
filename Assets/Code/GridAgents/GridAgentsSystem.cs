@@ -1,9 +1,8 @@
 using AIEnemy.AI;
-using Code.GridAgents.Model;
 using UnityEngine;
 using Zenject;
 
-namespace AIEnemy.GridAgents
+namespace AIEnemy
 {
     public class GridAgentsSystem : MonoInstaller
     {
@@ -32,7 +31,7 @@ namespace AIEnemy.GridAgents
                 .NonLazy();
 
             Container.Bind<IPathfinder>().To<BFSPathfinder>().AsTransient();
-            Container.Bind<IEnemyAI>().To<NormalEnemyAI>().AsTransient(); //Possible to inject hard and setup different way of behaviour for enemy
+            Container.Bind<IEnemyAI>().To<DefaultEnemyAI>().AsTransient(); //Possible to inject hard and setup different way of behaviour for enemy
 
             Container.BindInterfacesAndSelfTo<EnemyController>().AsSingle().NonLazy();
         }

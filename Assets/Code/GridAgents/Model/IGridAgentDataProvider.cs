@@ -1,6 +1,5 @@
-using AIEnemy.GridAgents;
 
-namespace Code.GridAgents.Model
+namespace AIEnemy
 {
     public interface IGridAgentDataProvider
     {

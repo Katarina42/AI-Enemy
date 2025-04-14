@@ -1,6 +1,5 @@
-using AIEnemy.GridAgents;
 
-namespace Code.Turns
+namespace AIEnemy
 {
     public interface ITurnOrderRegistar
     {

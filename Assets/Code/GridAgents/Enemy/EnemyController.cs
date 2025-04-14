@@ -1,8 +1,6 @@
 using System.Collections;
 using AIEnemy.AI;
-using AIEnemy.GridAgents;
-using Code.GridAgents.Model;
-using Code.Turns;
+using UnityEngine;
 using Zenject;
 
 namespace AIEnemy
@@ -28,20 +26,17 @@ namespace AIEnemy
         public void Initialize()
         {
             turnOrderRegistar.Register(this);
-            RefreshView();
+            var data = dataProvider.Get();
+            view.Refresh(data);
+            
         }
 
         public IEnumerator TakeTurn()
         {
-            ai.Act();
-            RefreshView();
-            yield break;
+            Debug.Log("Enemy is taking turn");
+            var data = ai.Decide();
+            yield return view.AnimateTurn(data);
         }
-
-        private void RefreshView()
-        {
-            var data = dataProvider.Get();
-            view.Refresh(data);
-        }
+        
     }
 }

@@ -1,94 +1,78 @@
-# AI-Enemy
+# 🧠 Tactical Grid Prototype
 
-# 🧪 Tactical Game Prototype – Unity Architecture
+This project is a **prototyping ground** for a turn-based, grid-based tactics game, inspired by systems like _XCOM_, _Tacticus_, and _D&D_. The focus is on **clean architecture**, **scalability**, and **AI behavior** that can adapt over time.
 
-This project is an early **prototype** of a turn-based tactical game inspired by systems found in games like *XCOM*, *Tacticus*, and *D&D*. The goal is to set up a **scalable, testable architecture** with core gameplay elements in place.
+---
+## 📹 Preview
 
-> ⚠️ This is not a polished game. It is a **work-in-progress foundation** for further development.
+![Grid Prototype](./grid_prototype_preview.gif)
+
+## ✅ Current Features
+
+- Grid-based movement system using a `GridTile` pool
+- Turn-based controller with queueing and coroutine execution
+- MVC architecture with SOLID principles and dependency injection (via Zenject)
+- Player and Enemy units using shared interfaces
+- Pathfinding using **BFS** (not A*, see below)
+- Smooth movement animations with custom curves
+- Separated AI logic that returns intent, which the controller executes
+- Mock data providers for controlled unit testing and iteration
 
 ---
 
-## 🎯 Goals
+## 🚫 Why We're Not Using A* (Yet)
 
-- ✅ Rapidly prototype turn-based gameplay
-- ✅ Build a clean architecture from the start
-- ✅ Follow best practices (SOLID, MVC, DI)
-- ✅ Ensure scalability for new systems (AI, abilities, etc.)
+Although **A\*** is the industry standard for tactical pathfinding, this prototype currently uses **BFS** because:
 
----
-
-## 🧱 Architectural Principles
-
-### ✅ **MVC Pattern**
-- **Model** – Data and logic (e.g., PlayerData, TurnOrder)
-- **View** – MonoBehaviours that handle rendering and input (e.g., PlayerView, GridTileView)
-- **Controller** – Coordinates models and views, and contains main logic (e.g., TurnController, EnemyController)
-
-### ✅ **SOLID Principles**
-- **Single Responsibility** – Each class does one thing 
-- **Open/Closed** – New AI types or pathfinding strategies can be added without modifying existing code
-- **Liskov, Interface Segregation, Dependency Inversion** – Encouraged through proper interface design and Zenject
-
-### ✅ **Dependency Injection (DI)**
-- Using [**Zenject**](https://github.com/modesttree/Zenject) for all system-wide injection
-- Reduces coupling and simplifies testing/replacement of systems (e.g., `IEnemyAI`, `IPathfinder`)
-
-### ✅ **Modularity**
-- All systems are built in isolation and interact through interfaces
-- Example: `TurnSystem`, `Pathfinding`, and `GridAgents` are completely swappable
+- The grid has **no obstacles** or **terrain weights**
+- Movement range is limited and consistent
+- BFS is extremely fast and simpler for this phase
+- Future extensions (A*, Dijkstra, Dijkstra maps) are planned once:
+  - Cover zones are added
+  - Flanking mechanics are introduced
+  - Tactical weights or hazard zones exist
 
 ---
 
-## 🔁 Systems in Place
+## 📹 Preview
 
-- ✅ **Grid System** (generated with object pooling)
-- ✅ **Turn System** (queue-based and coroutine-driven)
-- ✅ **Enemy + Player Agents** (following `IGridAgentController`)
-- ✅ **A\* Pathfinding** (clean and testable, SOLID-compliant)
-- ✅ **Basic AI Abstraction** (`IEnemyAI` with room for easy extension)
+https://user-images.githubusercontent.com/.../Screen%20Recording%202025-04-14%20at%2012.10.47.mov
 
----
+*Above: Enemy moves toward player using range-limited BFS, with smooth LERP movement.*
 
-## 🧪 Testing & Extensibility
-
-- Interfaces are designed for **unit testing** and mocking
-- Use Zenject test contexts to isolate systems in editor or runtime tests
-- Plug-and-play architecture for:
-    - Enemy difficulty levels
-    - Different movement systems
-    - New pathfinding strategies (e.g. Dijkstra, BFS)
+> Let me know if you'd like me to host the video or embed it via YouTube or GitHub-compatible format.
 
 ---
 
-## 🛠️ Next Steps
+## 🧠 Future Plan: Adaptive AI
 
-- [ ] Add player input logic (UI or click-to-move)
-- [ ] Implement health, attack,range and damage resolution
-- [ ] Build adaptive AI with pattern tracking
-- [ ] Add unit tests for grid & pathfinding
-- [ ] Change systems to resolve prefabs through centralized prefab system
-- [ ] Visual implementation - VFX, Assets optimization, prefabs optimization
-- [ ] Networking
-- [ ] Reading data from cloud/scriptable object (grid size, health etch)
+We're laying the groundwork for an **enemy AI that learns from player behavior**, including:
 
----
+- Tracking player tendencies:
+  - Hiding
+  - Rushing
+  - Flanking
+- Adjusting AI tactics dynamically:
+  - Increasing aggression if player hides
+  - Falling back or spreading out if player rushes
+- Visual indicators of AI adaptation
 
-## 🧠 Why This Approach?
-This project is not just about mechanics — it’s a testbed for:
-
-- Clean game architecture
-- Reusable systems
-- Rapid prototyping in teams or solo
-- Teaching / sharing scalable game code
+This will evolve into a modular `IEnemyAI` system where each difficulty level (normal, hard, adaptive) can be swapped or blended in runtime.
 
 ---
 
-## 🧃 Tools Used
+## 💡 Technologies & Design Principles
 
-- **Unity** (URP)
-- **Zenject** – Dependency injection
-- **Custom A\*** – Pathfinding
-- **C#** – SOLID & clean architecture principles
+- **Unity** 2022+
+- **Zenject** for dependency injection
+- **MVC + SOLID**
+- **ScriptableObjects** for data (planned)
+- **Object Pooling** for grid and unit visuals
+- **Unit-testable** service layers
 
 ---
+
+## 📌 Disclaimer
+
+This is an early **prototype** meant to validate architecture and systems. Visuals and final game rules are in progress. Contributions are welcome once the core loop stabilizes.
 

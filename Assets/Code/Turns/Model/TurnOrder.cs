@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using Code.Turns;
 
-namespace AIEnemy.GridAgents
+namespace AIEnemy
 {
     public class TurnOrder : ITurnOrderProvider, ITurnOrderRegistar
     {

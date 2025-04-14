@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using AIEnemy.GridAgents;
 
-namespace Code.Turns
+namespace AIEnemy
 {
     public interface ITurnOrderProvider
     {

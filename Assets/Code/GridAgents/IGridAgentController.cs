@@ -1,6 +1,6 @@
 using System.Collections;
 
-namespace AIEnemy.GridAgents
+namespace AIEnemy
 {
     public interface IGridAgentController
     {

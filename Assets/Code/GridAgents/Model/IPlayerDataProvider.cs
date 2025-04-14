@@ -1,4 +1,3 @@
-using Code.GridAgents.Model;
 
 namespace AIEnemy
 {

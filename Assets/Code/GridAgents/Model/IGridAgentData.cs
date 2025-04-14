@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace AIEnemy.GridAgents
+namespace AIEnemy
 {
     public interface IGridAgentData 
     {

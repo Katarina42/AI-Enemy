@@ -1,23 +1,27 @@
 using System.Collections.Generic;
-using AIEnemy.GridAgents;
-using Code.GridAgents.Model;
 using UnityEngine;
 
 namespace AIEnemy
 {
     public class MockEnemyDataProvider : IEnemyDataProvider
     {
-        public IGridAgentData Get()
+        private readonly EnemyData data;
+
+        public MockEnemyDataProvider()
         {
-            return new EnemyData()
+            data = new EnemyData()
             {
-                GridPosition = new Vector2Int(5,7),
+                GridPosition = new Vector2Int(5, 7),
                 Health = 10,
                 Damage = 10,
                 AttackRange = 2,
                 MovementRange = 1,
-                Path = new List<Vector2Int>(),
+                Path = new List<Vector2Int>()
             };
         }
+
+        public IGridAgentData Get() => data;
+
+        EnemyData IEnemyDataProvider.Get() => data;
     }
 }

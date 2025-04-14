@@ -1,7 +1,4 @@
 using System.Collections;
-using AIEnemy.GridAgents;
-using Code.GridAgents.Model;
-using Code.Turns;
 using UnityEngine;
 using Zenject;
 
@@ -28,26 +25,29 @@ namespace AIEnemy
         public void Initialize()
         {
             turnOrderRegistar.Register(this);
-            RefreshView();
+            var data = dataProvider.Get();
+            view.Refresh(data);
+            
         }
 
         private void OnGridTileSelected(Vector2Int tilePosition)
         {
+            if (!IsTileInRange(tilePosition))
+            {
+                return;
+            }
+
             var data = dataProvider.Get();
             data.GridPosition = tilePosition;
-            
-            RefreshView();
-            hasGridTileSelected = true;
-        }
-
-        private void RefreshView()
-        {
-            var data = dataProvider.Get();
             view.Refresh(data);
+            
+            hasGridTileSelected = true;
         }
 
         public IEnumerator TakeTurn()
         {
+            Debug.Log("Player is taking turn");
+
             hasGridTileSelected = false;
             events.GridTileSelected += OnGridTileSelected;
             while (!hasGridTileSelected)
@@ -56,6 +56,13 @@ namespace AIEnemy
             }
 
             events.GridTileSelected -= OnGridTileSelected;
+        }
+        
+        private bool IsTileInRange(Vector2Int tilePosition)
+        {
+            var data = dataProvider.Get();
+            var distance = Mathf.Abs(tilePosition.x - data.GridPosition.x) + Mathf.Abs(tilePosition.y - data.GridPosition.y);
+            return distance <= data.MovementRange;
         }
     }
 }
